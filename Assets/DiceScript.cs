@@ -5,41 +5,47 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class DiceScript : MonoBehaviour
 {
-    public Sprite[] faces;
+    public Sprite[] faceSprites;
+    public LogicScript logic;
+    public FaceScript[] faces;
 
-    bool roll = false;
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            faces[i] = GameObject.FindGameObjectWithTag("Face").GetComponent<FaceScript>();
+            faces[i].id = i;
+            faces[i].sprite = faceSprites[i];
+        }
+
         spriteRenderer = GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
         if (spriteRenderer.sprite == null) // if the sprite on spriteRenderer is null then
-            spriteRenderer.sprite = faces[0]; // set the sprite to sprite1
+            spriteRenderer.sprite = faces[0].sprite; // set the sprite to sprite1
+
+
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (roll)
-        {
-            ChangeFace();
-        }
+
     }
 
     public void OnRoll()
     {
         ChangeFace();
+        logic.UseRoll();
     }
 
     void ChangeFace()
     {
         var roll = Random.Range(0, 3);
         Debug.Log("Face rolled " + roll);
-        spriteRenderer.sprite = faces[roll];
-    }
+        spriteRenderer.sprite = faces[roll].sprite;
 
-    IEnumerable rollWait()
-    {
-        yield return new WaitForSecondsRealtime(1);
+        logic.AddScore(faces[roll].RollValue());
     }
 }

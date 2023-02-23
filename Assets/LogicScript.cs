@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LogicScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public int playerScore;
+    public int rollsLeft;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI rollsText;
+
+    public void AddScore(int value)
     {
-        
+        playerScore += value;
+        scoreText.text = playerScore.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UseRoll()
     {
-        
+        rollsLeft -= 1;
+        rollsText.text = rollsLeft.ToString();
     }
 }
