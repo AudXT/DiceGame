@@ -1,0 +1,54 @@
+{
+    "name": "MyControl",
+    "maps": [
+        {
+            "name": "Dice",
+            "id": "a1c69497-715f-46e7-aa93-87f13005098b",
+            "actions": [
+                {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "592b4a5c-3a5d-40ec-9c93-8ef0d2f1a515",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RollFast",
+                    "type": "PassThrough",
+                    "id": "5631e939-89ea-49ef-9baa-4f89379f0f4d",
+                    "expectedControlType": "Touch",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "879cd286-28a1-4610-9c69-2170d74a8299",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "57effc23-9fb0-41d5-b9d2-fb3dbd67f938",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollFast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
